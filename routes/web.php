@@ -22,9 +22,16 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::post('/register', [UserController::class, 'store']);
 
 Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddleware"], "as" => "register."], function () {
-    Route::view('/applications', 'welcome');
+    Route::view('/applications', 'register.blank');
+    Route::view('/payments', 'register.blank');
+    Route::view('/applicants', 'register.blank');
+    Route::view('/registers', 'register.blank');
+    Route::view('/settings', 'register.settings');
 });
 
 Route::group(["prefix" => "applicant", "middleware" => ["auth", "applicantMiddleware"], "as" => "applicant."], function () {
-    Route::view('/', 'welcome');
+    Route::view('/', 'applicant.blank');
+    Route::view('/applications', 'applicant.blank');
+    Route::view('/payments', 'applicant.blank');
+    Route::view('/settings', 'applicant.settings');
 });
