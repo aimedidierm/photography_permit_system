@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -21,6 +22,28 @@ class UserController extends Controller
     public function create()
     {
         //
+    }
+
+    public function detailsUpdate(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'password' => 'required|string',
+            'confirmPassword' => 'required|string',
+        ]);
+        if ($request->password == $request->confirmPassword) {
+            $user = User::find(Auth::id());
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->password = bcrypt($request->password);
+            $user->update();
+            return redirect('/applicant/settings');
+        } else {
+            return redirect('/applicant/settings')->withErrors('Passwords not match');
+        }
     }
 
     /**
@@ -52,9 +75,14 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        $user = Auth::user();
+        if ($user->role == 'applicant') {
+            return view('applicant.settings', ['data' => $user]);
+        } else {
+            return view('register.settings', ['data' => $user]);
+        }
     }
 
     /**
