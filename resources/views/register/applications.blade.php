@@ -15,16 +15,17 @@
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Column 2
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Column 3
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shooting
+                        date
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Column 4
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Letter
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Column 5
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action
@@ -32,16 +33,28 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-600">
-                <!-- Sample table rows -->
+                @if ($data->isEmpty())
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Data 1</td>
-                    <td class="px-6 py-4 whitespace-nowrap">Data 2</td>
-                    <td class="px-6 py-4 whitespace-nowrap">Data 3</td>
-                    <td class="px-6 py-4 whitespace-nowrap">Data 4</td>
-                    <td class="px-6 py-4 whitespace-nowrap">Data 5</td>
-                    <td class="px-6 py-4 whitespace-nowrap">Data 6</td>
+                    <td class="px-6 py-4 whitespace-nowrap" colspan="6">You didn't have any application</td>
                 </tr>
-                <!-- Add more rows as needed -->
+                @else
+                @foreach ($data as $application)
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$application->created_at}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$application->title}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$application->shootingDate}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <a href="{{$application->letter}}" target="_blank"
+                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Open</a>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$application->status}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <a href="/register/application/{{$application->id}}"
+                            class="font-medium text-blue-700 dark:text-blue-700 hover:underline">More details</a>
+                    </td>
+                </tr>
+                @endforeach
+                @endif
             </tbody>
         </table>
 

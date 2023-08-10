@@ -29,15 +29,22 @@ class ApplicationController extends Controller
 
     public function registerList()
     {
-        return view('register.applications');
+        $applications = Application::latest()->get();
+        $applications->load('user');
+        return view('register.applications', ['data' => $applications]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Application $application)
     {
-        //
+        $application->load('user');
+        if ($application != null) {
+            return view('register.details', ['data' => $application]);
+        } else {
+            return back()->withErrors('Application not found!');
+        }
     }
 
     /**

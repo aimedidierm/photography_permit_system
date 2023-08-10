@@ -14,7 +14,9 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::latest()->get();
+        $payments->load('application');
+        return view('register.payments', ['data' => $payments]);
     }
 
     public function applicantList()

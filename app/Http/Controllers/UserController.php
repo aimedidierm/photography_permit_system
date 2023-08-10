@@ -40,9 +40,13 @@ class UserController extends Controller
             $user->phone = $request->phone;
             $user->password = bcrypt($request->password);
             $user->update();
-            return redirect('/applicant/settings');
+            if ($user->role == 'applicant') {
+                return redirect('/applicant/settings');
+            } else {
+                return redirect('/register/settings');
+            }
         } else {
-            return redirect('/applicant/settings')->withErrors('Passwords not match');
+            return back()->withErrors('Passwords not match');
         }
     }
 

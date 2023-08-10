@@ -26,10 +26,12 @@ Route::post('/register', [UserController::class, 'store']);
 
 Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddleware"], "as" => "register."], function () {
     Route::get('/applications', [ApplicationController::class, 'registerList']);
-    Route::view('/payments', 'register.blank');
-    Route::view('/applicants', 'register.blank');
-    Route::view('/registers', 'register.blank');
-    Route::view('/settings', 'register.settings');
+    Route::get('/payments', [PaymentController::class, 'index']);
+    Route::get('/application/{application}', [ApplicationController::class, 'create']);
+    Route::view('/applicants', 'register.applicants');
+    Route::view('/registers', 'register.registers');
+    Route::get('/settings', [UserController::class, 'show']);
+    Route::post('/settings', [UserController::class, 'detailsUpdate']);
 });
 
 Route::group(["prefix" => "applicant", "middleware" => ["auth", "applicantMiddleware"], "as" => "applicant."], function () {
