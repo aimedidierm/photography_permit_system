@@ -2,11 +2,11 @@
 
 @section('content')
 <x-registernav />
-<h2 class="text-2xl font-semibold p-4 mb-4">All Registers accounts</h2>
+<h2 class="text-2xl font-semibold p-4 mb-4">All applications payments</h2>
 <div class="px-4">
     <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-md w-full">
 
-        <h2 class="text-1xl font-semibold mb-2 dark:text-white">Registers accounts</h2>
+        <h2 class="text-1xl font-semibold mb-2 dark:text-white">System payments</h2>
 
         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
             <thead class="bg-gray-50 dark:bg-gray-800">
@@ -15,13 +15,14 @@
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shooting
+                        date
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -31,18 +32,18 @@
             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-600">
                 @if ($data->isEmpty())
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap" colspan="5">There is no any rester</td>
+                    <td class="px-6 py-4 whitespace-nowrap" colspan="6">You didn't have any application</td>
                 </tr>
                 @else
-                @foreach ($data as $register)
+                @foreach ($data as $payment)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{$register->created_at}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{$register->name}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{$register->email}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{$register->phone}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$payment->created_at}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$payment->application->title}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$payment->application->shootingDate}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{$payment->status}}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        {{-- <a href="/register/application/{{$register->id}}"
-                            class="font-medium text-blue-700 dark:text-blue-700 hover:underline">More details</a> --}}
+                        <a href="/register/application/{{$payment->application->id}}"
+                            class="font-medium text-blue-700 dark:text-blue-700 hover:underline">More details</a>
                     </td>
                 </tr>
                 @endforeach
@@ -55,7 +56,7 @@
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                            Create new register account
+                            Make payment
                         </h3>
                         <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -107,4 +108,15 @@
         </div>
     </div>
 </div>
+<script>
+    function makePayment(item) {
+        console.log(item);
+        var title = document.getElementById('payTitle');
+        title.value = item.application.title;
+        var price = document.getElementById('payPrice');
+        price.value = item.amount;
+        var id = document.getElementById('payId');
+        id.value = item.id;
+    }
+</script>
 @stop

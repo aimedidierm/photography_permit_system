@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,8 +30,8 @@ Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddlewa
     Route::get('/applications', [ApplicationController::class, 'registerList']);
     Route::get('/payments', [PaymentController::class, 'index']);
     Route::get('/application/{application}', [ApplicationController::class, 'create']);
-    Route::view('/applicants', 'register.applicants');
-    Route::view('/registers', 'register.registers');
+    Route::resource('/registers', RegisterController::class)->only('index', 'store', 'destroy');
+    Route::resource('/applicants', ApplicantController::class)->only('index', 'store', 'destroy');
     Route::get('/settings', [UserController::class, 'show']);
     Route::post('/settings', [UserController::class, 'detailsUpdate']);
 });

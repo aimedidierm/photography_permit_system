@@ -26,13 +26,18 @@ class UserController extends Controller
 
     public function detailsUpdate(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-            'password' => 'required|string',
-            'confirmPassword' => 'required|string',
-        ]);
+        $request->validate(
+            [
+                'name' => 'required|string',
+                'email' => 'required|email',
+                'phone' => 'required|numeric|regex:/^07\d{8}$/',
+                'password' => 'required|string',
+                'confirmPassword' => 'required|string',
+            ],
+            $messages = [
+                'phone.regex' => 'The phone number must start with "07" and be 10 digits long.',
+            ]
+        );
         if ($request->password == $request->confirmPassword) {
             $user = User::find(Auth::id());
             $user->name = $request->name;
@@ -55,13 +60,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|string',
-            'password' => 'required|string',
-            'confirmPassword' => 'required|string',
-        ]);
+        $request->validate(
+            [
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users,email',
+                'phone' => 'required|numeric|regex:/^07\d{8}$/',
+                'password' => 'required|string',
+                'confirmPassword' => 'required|string',
+            ],
+            $messages = [
+                'phone.regex' => 'The phone number must start with "07" and be 10 digits long.',
+            ]
+        );
         if ($request->password == $request->confirmPassword) {
             $user = new User;
             $user->name = $request->name;
