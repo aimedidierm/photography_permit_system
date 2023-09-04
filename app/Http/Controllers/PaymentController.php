@@ -6,6 +6,7 @@ use App\Models\Application;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Paypack\Paypack;
 
 class PaymentController extends Controller
 {
@@ -28,10 +29,15 @@ class PaymentController extends Controller
 
     public function pay(Request $request)
     {
-        $request->validate([
-            'id' => 'required|numeric',
-            'phone' => 'required|numeric',
-        ]);
+        $request->validate(
+            [
+                'id' => 'required|numeric',
+                'phone' => 'required|numeric|regex:/^07\d{8}$/',
+            ],
+            [
+                'phone.regex' => 'The phone number must start with "07" and be 10 digits long.',
+            ]
+        );
 
         $application = Application::find($request->id);
         if ($application != null) {
@@ -41,57 +47,25 @@ class PaymentController extends Controller
             $payment->update();
             $application->status = 'payed';
             $application->update();
+            // $paypackInstance = $this->paypackConfig()->Cashin([
+            //     "amount" => $fee,
+            //     "phone" => $request->phone,
+            // ]);
             return redirect('/applicant/payments');
         } else {
             return redirect('/applicant/payments')->withErrors('Application not found');
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function paypackConfig()
     {
-        //
-    }
+        $paypack = new Paypack();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $paypack->config([
+            'client_id' => env('PAYPACK_CLIENT_ID'),
+            'client_secret' => env('PAYPACK_CLIENT_SECRET'),
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Payment $payment)
-    {
-        //
+        return $paypack;
     }
 }

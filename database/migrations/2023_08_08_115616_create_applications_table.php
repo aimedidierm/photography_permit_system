@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('other')->nullable();
             $table->enum('status', ['pending', 'payed', 'approved', 'rejected'])->default('pending');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->on('users')->references('id')->onDelete("restrict");
+            $table->foreign('user_id')->on('users')->references('id')->onDelete("CASCADE");
             $table->timestamps();
         });
     }

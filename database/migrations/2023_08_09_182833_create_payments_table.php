@@ -16,9 +16,9 @@ return new class extends Migration
             $table->float('amount')->default(0.00);
             $table->enum('status', ['pending', 'payed', 'expired'])->default('pending');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->on('users')->references('id')->onDelete("restrict");
+            $table->foreign('user_id')->on('users')->references('id')->onDelete("CASCADE");
             $table->unsignedBigInteger('application_id');
-            $table->foreign('application_id')->on('applications')->references('id')->onDelete("restrict");
+            $table->foreign('application_id')->on('applications')->references('id')->onDelete("CASCADE");
             $table->timestamps();
         });
     }
