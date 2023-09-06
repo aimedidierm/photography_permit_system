@@ -34,6 +34,7 @@ Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddlewa
     Route::resource('/applicants', ApplicantController::class)->only('index', 'store', 'destroy');
     Route::get('/settings', [UserController::class, 'show']);
     Route::post('/settings', [UserController::class, 'detailsUpdate']);
+    Route::get('/report', [ApplicationController::class, 'report']);
 });
 
 Route::group(["prefix" => "applicant", "middleware" => ["auth", "applicantMiddleware"], "as" => "applicant."], function () {

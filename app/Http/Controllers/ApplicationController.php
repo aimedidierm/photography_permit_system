@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ApplicationController extends Controller
 {
@@ -184,5 +185,12 @@ class ApplicationController extends Controller
     public function destroy(Application $application)
     {
         //
+    }
+    public function report()
+    {
+        $applications = Application::latest()->get();
+        $applications->load('user');
+        $pdf = Pdf::loadView('report', ['data' => $applications]);
+        return $pdf->download('report.pdf');
     }
 }
