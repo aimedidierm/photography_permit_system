@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Payment;
+use App\Services\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Paypack\Paypack;
@@ -47,10 +48,20 @@ class PaymentController extends Controller
             $payment->update();
             $application->status = 'payed';
             $application->update();
-            // $paypackInstance = $this->paypackConfig()->Cashin([
-            //     "amount" => $fee,
-            //     "phone" => $request->phone,
-            // ]);
+            $paypackInstance = $this->paypackConfig()->Cashin([
+                "amount" => $payment->amount,
+                "phone" => $request->phone,
+            ]);
+            $message = "Dear " . Auth::user()->name . " your application send, Thank you.";
+            $sms = new Sms();
+            $sms->recipients([Auth::user()->phone])
+                ->message($message)
+                ->sender(env('SMS_SENDERID'))
+                ->username(env('SMS_USERNAME'))
+                ->password(env('SMS_PASSWORD'))
+                ->apiUrl("www.intouchsms.co.rw/api/sendsms/.json")
+                ->callBackUrl("");
+            $sms->send();
             return redirect('/applicant/payments');
         } else {
             return redirect('/applicant/payments')->withErrors('Application not found');

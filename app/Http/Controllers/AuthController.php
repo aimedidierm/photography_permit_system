@@ -30,10 +30,10 @@ class AuthController extends Controller
                     return back()->withErrors('Role not found');
                 }
             } else {
-                return redirect("/#login")->withErrors(['msg' => 'Incorect password']);
+                return redirect("/login")->withErrors(['msg' => 'Incorect password']);
             }
         } else {
-            return redirect('/#login')->withErrors(['msg' => 'Incorect email and password']);
+            return redirect('/login')->withErrors(['msg' => 'Incorect email and password']);
         }
     }
 

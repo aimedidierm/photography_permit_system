@@ -69,9 +69,9 @@ class ApplicationController extends Controller
         ]);
 
         if ($request->rwandan == true) {
-            $applicationAmount = 10000;
+            $applicationAmount = 100;
         } else {
-            $applicationAmount = 50000;
+            $applicationAmount = 500;
         }
         $uniqueid = uniqid();
         $extension = $request->file('letter')->getClientOriginalExtension();
@@ -101,6 +101,8 @@ class ApplicationController extends Controller
             $file = $request->file('itCertificate');
             Storage::disk('public')->put($filename, file_get_contents($file));
             $itCertificateUrl = Storage::url($filename);
+        } else {
+            $itCertificateUrl = null;
         }
         if ($request->hasFile('card')) {
             $uniqueid = uniqid();
@@ -109,6 +111,8 @@ class ApplicationController extends Controller
             $file = $request->file('card');
             Storage::disk('public')->put($filename, file_get_contents($file));
             $cardUrl = Storage::url($filename);
+        } else {
+            $cardUrl = null;
         }
         if ($request->hasFile('other')) {
             $uniqueid = uniqid();
@@ -117,6 +121,8 @@ class ApplicationController extends Controller
             $file = $request->file('other');
             Storage::disk('public')->put($filename, file_get_contents($file));
             $otherUrl = Storage::url($filename);
+        } else {
+            $otherUrl = null;
         }
 
         $application = new Application;

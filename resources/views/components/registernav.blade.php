@@ -15,8 +15,7 @@
                 </button>
                 <a href="# class=" flex ml-2 md:mr-24">
                     <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Photograph
-                        permit system</span>
+                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">{{env('APP_NAME')}}</span>
                 </a>
             </div>
             <div class="flex items-center">

@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/sp', 'special');
+Route::view('/login', 'auth.login');
 Route::view('/', 'index')->name('login');
-Route::view('/register', 'register');
+Route::view('/register', 'auth.register');
 Route::post('/', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::post('/register', [UserController::class, 'store']);
 
 Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddleware"], "as" => "register."], function () {
