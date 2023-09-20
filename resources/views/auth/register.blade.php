@@ -17,8 +17,8 @@
                 <a href="#" class="text-black text-xl font-bold">{{env("APP_NAME")}}</a>
             </div>
             <div class="space-x-4">
-                <a href="#home" class="text-black">Home</a>
-                <a href="#about" class="text-black">About</a>
+                <a href="/" class="text-black">Home</a>
+                <a href="/#about" class="text-black">About</a>
                 <a href="/login" class="text-black">Login</a>
                 <a href="/register" class="text-black">Register</a>
             </div>

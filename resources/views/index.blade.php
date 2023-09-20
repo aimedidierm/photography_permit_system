@@ -28,7 +28,7 @@
     <div class="container mx-auto text-center relative">
         <img src="landing_image.jpg" alt="Landing Image" class="w-full h-auto rounded-lg shadow-lg">
         <h1 class="text-4xl font-bold absolute bottom-0 left-0 w-full text-white bg-black bg-opacity-50 p-4">
-            Welcome to {{env('APP_NAME')}}
+            Welcome to {{env('APP_NAME')}} ( Video shooting and Photography Permit Request Portal )
         </h1>
     </div>
 
@@ -37,11 +37,13 @@
             <h2 class="text-3xl font-bold mb-8">About Us</h2>
             <p class="text-gray-700 text-lg">
                 At {{env('APP_NAME')}}, we are passionate about simplifying the process of obtaining permits for your
-                photography projects. Our mission is to provide photographers and creatives with a seamless and
+                video shooting and photography projects. Our mission is to provide photographers and creatives with a
+                seamless and
                 efficient platform to secure the necessary permissions. With a team of dedicated professionals and a
                 user-friendly interface, we strive to make the permit application process as straightforward as
                 possible, allowing you to focus on what you do best – capturing moments and creating stunning visuals.
-                Join us in this journey to unlock new opportunities and bring your photography visions to life.
+                Join us in this journey to unlock new opportunities and bring your video shooting and photography
+                visions to life.
             </p>
         </div>
     </section>

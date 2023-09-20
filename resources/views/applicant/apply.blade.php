@@ -54,23 +54,77 @@
                     <div class="mb-4 w-1/3">
                         <label for="documentNumber"
                             class="block text-sm font-medium text-gray-800 dark:text-white">Document
-                            number</label>
+                            number(ID or Passport)</label>
                         <input type="text" id="emdocumentNumberail" name="documentNumber" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                 </div>
-                <h2 class="text-1xl font-semibold mb-4 dark:text-white">Application Details</h2>
+                <div class="flex space-x-4">
 
+                    <div class="mb-4 w-1/3">
+                        <label for="placeIssue" class="block text-sm font-medium text-gray-800 dark:text-white">Place
+                            Issue</label>
+                        <input type="text" id="placeIssue" name="placeIssue" required
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="dateIssue" class="block text-sm font-medium text-gray-800 dark:text-white">Date
+                            Issue</label>
+                        <input type="date" id="dateIssue" name="dateIssue" required
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="dateExpiry" class="block text-sm font-medium text-gray-800 dark:text-white">Date
+                            Expiry</label>
+                        <input type="date" id="dateExpiry" name="dateExpiry"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="profession"
+                            class="block text-sm font-medium text-gray-800 dark:text-white">Profession</label>
+                        <input type="text" id="profession" name="profession" required
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <h2 class="text-1xl font-semibold mb-4 dark:text-white">Film Project Information</h2>
                 <div class="flex space-x-4">
                     <div class="mb-4 w-1/2">
                         <label for="title" class="block text-sm font-medium text-gray-800 dark:text-white">Title</label>
                         <input type="text" id="title" name="title" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
+
                     <div class="mb-4 w-1/2">
-                        <label for="date" class="block text-sm font-medium text-gray-800 dark:text-white">Shooting
-                            date</label>
-                        <input type="date" id="date" name="date" required
+                        <label for="genre" class="block text-sm font-medium text-gray-800 dark:text-white">
+                            Genre</label>
+                        <input type="text" id="genre" name="genre" required
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <div class="mb-4 w-1/3">
+                        <label for="shootingDateStart"
+                            class="block text-sm font-medium text-gray-800 dark:text-white">Shooting Date Start</label>
+                        <input type="date" id="shootingDateStart" name="shootingDateStart" required
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="shootingDateEnd"
+                            class="block text-sm font-medium text-gray-800 dark:text-white">Shooting Date End</label>
+                        <input type="date" id="shootingDateEnd" name="shootingDateEnd"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="stayDuration" class="block text-sm font-medium text-gray-800 dark:text-white">Stay
+                            Duration(for non residents)</label>
+                        <input type="text" id="stayDuration" name="stayDuration"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="location" class="block text-sm font-medium text-gray-800 dark:text-white">Location
+                            (town,
+                            sector)</label>
+                        <input type="text" id="location" name="location" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                 </div>
@@ -88,19 +142,39 @@
                     <div class="mb-4 w-1/3">
                         <label for="letter" class="block text-sm font-medium text-gray-800 dark:text-white">Application
                             letter</label>
-                        <input type="file" name="letter" id="letter"
+                        <input type="file" name="letter" id="letter" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4 w-1/3">
                         <label for="recomendation"
                             class="block text-sm font-medium text-gray-800 dark:text-white">Recomendation</label>
-                        <input type="file" name="recomendation" id="recomendation"
+                        <input type="file" name="recomendation" id="recomendation" required
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4 w-1/3">
                         <label for="rra" class="block text-sm font-medium text-gray-800 dark:text-white">RRA
                             bill</label>
-                        <input type="file" name="rra" id="rra"
+                        <input type="file" name="rra" id="rra" required
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <div class="mb-4 w-1/3">
+                        <label for="identification"
+                            class="block text-sm font-medium text-gray-800 dark:text-white">Identification
+                        </label>
+                        <input type="file" name="identification" id="identification" required
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="CV" class="block text-sm font-medium text-gray-800 dark:text-white">CV</label>
+                        <input type="file" name="CV" id="CV"
+                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <label for="synopsis"
+                            class="block text-sm font-medium text-gray-800 dark:text-white">Synopsis</label>
+                        <input type="file" name="synopsis" id="synopsis"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                 </div>
@@ -115,7 +189,7 @@
                     </div>
                     <div class="mb-4 w-1/3">
                         <label for="card" class="block text-sm font-medium text-gray-800 dark:text-white">Service
-                            card(Jurnalist)</label>
+                            card(Journalist)</label>
                         <input type="file" name="card" id="card"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>

@@ -77,6 +77,24 @@
                 </a>
             </li>
             <li>
+                <a href="/register/pending"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="material-symbols-outlined">
+                        upload_file
+                    </span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Pending Applications</span>
+                </a>
+            </li>
+            <li>
+                <a href="/register/rejected"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="material-symbols-outlined">
+                        edit_document
+                    </span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Rejected Applications</span>
+                </a>
+            </li>
+            <li>
                 <a href="/register/payments"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">

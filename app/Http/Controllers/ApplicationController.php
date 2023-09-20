@@ -22,6 +22,20 @@ class ApplicationController extends Controller
         return view('applicant.applications', ['data' => $applications]);
     }
 
+    public function rejected()
+    {
+        $applications = Application::latest()->get();
+        $applications->load('user');
+        return view('register.rejected', ['data' => $applications]);
+    }
+
+    public function pending()
+    {
+        $applications = Application::latest()->get();
+        $applications->load('user');
+        return view('register.pending', ['data' => $applications]);
+    }
+
     public function applicationForm()
     {
         $user = Auth::user();
@@ -57,15 +71,26 @@ class ApplicationController extends Controller
             'rwandan' => 'required|boolean',
             'document' => 'required|boolean',
             'documentNumber' => 'required|string',
+            'placeIssue' => 'required|string',
+            'dateIssue' => 'required|date',
+            'dateExpiry' => 'sometimes|date',
+            'profession' => 'required|string',
             'title' => 'required|string',
-            'date' => 'required|date',
+            'genre' => 'required|string',
+            'shootingDateStart' => 'required|date',
+            'shootingDateEnd' => 'required|date',
+            'stayDuration' => 'required|string',
+            'location' => 'required|string',
             'description' => 'required|string',
             'letter' => 'required|file|mimes:png,jpg,pdf',
             'recomendation' => 'required|file|mimes:png,jpg,pdf',
-            'rra' => 'required|file|mimes:png,jpg,pdf',
+            'identification' => 'required|file|mimes:png,jpg,pdf',
+            'CV' => 'required|file|mimes:png,jpg,pdf',
+            'synopsis' => 'required|file|mimes:png,jpg,pdf',
             'itCertificate' => 'file|mimes:png,jpg,pdf',
             'card' => 'file|mimes:png,jpg,pdf',
             'other' => 'file|mimes:png,jpg,pdf',
+            'rra' => 'required|file|mimes:png,jpg,pdf',
         ]);
 
         if ($request->rwandan == true) {
@@ -124,13 +149,52 @@ class ApplicationController extends Controller
         } else {
             $otherUrl = null;
         }
+        if ($request->hasFile('identification')) {
+            $uniqueid = uniqid();
+            $extension = $request->file('identification')->getClientOriginalExtension();
+            $filename = Carbon::now()->format('Ymd') . '_' . $uniqueid . '.' . $extension;
+            $file = $request->file('identification');
+            Storage::disk('public')->put($filename, file_get_contents($file));
+            $identificationUrl = Storage::url($filename);
+        } else {
+            $identificationUrl = null;
+        }
+        if ($request->hasFile('CV')) {
+            $uniqueid = uniqid();
+            $extension = $request->file('CV')->getClientOriginalExtension();
+            $filename = Carbon::now()->format('Ymd') . '_' . $uniqueid . '.' . $extension;
+            $file = $request->file('CV');
+            Storage::disk('public')->put($filename, file_get_contents($file));
+            $CVUrl = Storage::url($filename);
+        } else {
+            $CVUrl = null;
+        }
+        if ($request->hasFile('synopsis')) {
+            $uniqueid = uniqid();
+            $extension = $request->file('synopsis')->getClientOriginalExtension();
+            $filename = Carbon::now()->format('Ymd') . '_' . $uniqueid . '.' . $extension;
+            $file = $request->file('synopsis');
+            Storage::disk('public')->put($filename, file_get_contents($file));
+            $synopsisUrl = Storage::url($filename);
+        } else {
+            $synopsisUrl = null;
+        }
 
         $application = new Application;
+
+        $application->placeIssue = $request->placeIssue;
+        $application->dateIssue = $request->dateIssue;
+        $application->dateExpiry = $request->dateExpiry;
+        $application->profession = $request->profession;
+        $application->genre = $request->genre;
+        $application->shootingDateStart = $request->shootingDateStart;
+        $application->shootingDateEnd = $request->shootingDateEnd;
+        $application->stayDuration = $request->stayDuration;
+        $application->location = $request->location;
         $application->rwandan = $request->rwandan;
         $application->documentType = $request->document;
         $application->documentNumber = $request->documentNumber;
         $application->title = $request->title;
-        $application->shootingDate = $request->date;
         $application->description = $request->description;
         $application->letter = $letterUrl;
         $application->recomendation = $recomendationUrl;
@@ -138,6 +202,9 @@ class ApplicationController extends Controller
         $application->ipCertificate = $itCertificateUrl;
         $application->card = $cardUrl;
         $application->other = $otherUrl;
+        $application->identification = $identificationUrl;
+        $application->CV = $CVUrl;
+        $application->synopsis = $synopsisUrl;
         $application->user_id = Auth::id();
         $application->created_at = now();
         $application->updated_at = null;
@@ -194,9 +261,10 @@ class ApplicationController extends Controller
     }
     public function report()
     {
+        $total = Payment::where('status', 'payed')->sum('amount');
         $applications = Application::latest()->get();
-        $applications->load('user');
-        $pdf = Pdf::loadView('report', ['data' => $applications]);
+        $applications->load('user', 'payment');
+        $pdf = Pdf::loadView('report', ['data' => $applications, 'total' => $total]);
         return $pdf->download('report.pdf');
     }
 }

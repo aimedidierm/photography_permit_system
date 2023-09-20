@@ -27,6 +27,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::post('/register', [UserController::class, 'store']);
 
 Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddleware"], "as" => "register."], function () {
+    Route::get('/pending', [ApplicationController::class, 'pending']);
+    Route::get('/rejected', [ApplicationController::class, 'rejected']);
     Route::get('/applications', [ApplicationController::class, 'registerList']);
     Route::get('/payments', [PaymentController::class, 'index']);
     Route::get('/application/{application}', [ApplicationController::class, 'create']);
