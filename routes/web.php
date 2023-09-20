@@ -29,9 +29,12 @@ Route::post('/register', [UserController::class, 'store']);
 Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddleware"], "as" => "register."], function () {
     Route::get('/pending', [ApplicationController::class, 'pending']);
     Route::get('/rejected', [ApplicationController::class, 'rejected']);
-    Route::get('/applications', [ApplicationController::class, 'registerList']);
     Route::get('/payments', [PaymentController::class, 'index']);
+    Route::get('/applications', [ApplicationController::class, 'registerList']);
     Route::get('/application/{application}', [ApplicationController::class, 'create']);
+    Route::get('/application/approve/{application}', [ApplicationController::class, 'approve']);
+    Route::get('/application/reject/{application}', [ApplicationController::class, 'rejectView']);
+    Route::post('/application/reject/{application}', [ApplicationController::class, 'reject']);
     Route::resource('/registers', RegisterController::class)->only('index', 'store', 'destroy');
     Route::resource('/applicants', ApplicantController::class)->only('index', 'store', 'destroy');
     Route::get('/settings', [UserController::class, 'show']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Payment;
+use App\Services\Sms;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,16 +25,70 @@ class ApplicationController extends Controller
 
     public function rejected()
     {
-        $applications = Application::latest()->get();
+        $applications = Application::latest()->where('status', 'rejected')->get();
         $applications->load('user');
         return view('register.rejected', ['data' => $applications]);
     }
 
     public function pending()
     {
-        $applications = Application::latest()->get();
+        $applications = Application::latest()->where('status', 'pending')->get();
         $applications->load('user');
         return view('register.pending', ['data' => $applications]);
+    }
+
+    public function rejectView()
+    {
+        return view('register.comment');
+    }
+
+    public function reject(Request $request, Application $application)
+    {
+        $request->validate([
+            'message' => 'required|string'
+        ]);
+
+        if ($application) {
+            $application->load('user');
+            $application->status = 'rejected';
+            $application->rejectionComment = $request->message;
+            $application->update();
+            $message = "Dear " . $application->user->name . " your application had been rejected because " . $request->message . " , Thank you.";
+            $sms = new Sms();
+            $sms->recipients([$application->user->phone])
+                ->message($message)
+                ->sender(env('SMS_SENDERID'))
+                ->username(env('SMS_USERNAME'))
+                ->password(env('SMS_PASSWORD'))
+                ->apiUrl("www.intouchsms.co.rw/api/sendsms/.json")
+                ->callBackUrl("");
+            $sms->send();
+            return redirect('/register/applications');
+        } else {
+            return back()->withErrors('Application not found');
+        }
+    }
+
+    public function approve(Application $application)
+    {
+        if ($application) {
+            $application->load('user');
+            $application->status = 'approved';
+            $application->update();
+            $message = "Dear " . $application->user->name . " your application had been approved, Thank you.";
+            $sms = new Sms();
+            $sms->recipients([$application->user->phone])
+                ->message($message)
+                ->sender(env('SMS_SENDERID'))
+                ->username(env('SMS_USERNAME'))
+                ->password(env('SMS_PASSWORD'))
+                ->apiUrl("www.intouchsms.co.rw/api/sendsms/.json")
+                ->callBackUrl("");
+            $sms->send();
+            return redirect('/register/applications');
+        } else {
+            return back()->withErrors('Application not found');
+        }
     }
 
     public function applicationForm()
