@@ -124,7 +124,7 @@ class ApplicationController extends Controller
     {
         $request->validate([
             'rwandan' => 'required|boolean',
-            'document' => 'required|boolean',
+            'document' => 'required|string',
             'documentNumber' => 'required|string',
             'placeIssue' => 'required|string',
             'dateIssue' => 'required|date',
