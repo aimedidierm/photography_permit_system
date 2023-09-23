@@ -49,7 +49,7 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{$payment->created_at}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{$payment->application->title}}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{$payment->application->shootingDate}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{$payment->application->shootingDateStart}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{$payment->status}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @if ($payment->status == 'pending')

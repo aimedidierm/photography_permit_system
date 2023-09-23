@@ -39,11 +39,9 @@ class PaymentController extends Controller
                 'phone.regex' => 'The phone number must start with "07" and be 10 digits long.',
             ]
         );
-
-        $application = Application::find($request->id);
+        $payment = Payment::find($request->id);
+        $application = Application::find($payment->application_id);
         if ($application != null) {
-            $payment = Payment::where('application_id', $application->id)->first();
-            $payment = Payment::find($payment->id);
             $payment->status = 'payed';
             $payment->update();
             $application->status = 'payed';

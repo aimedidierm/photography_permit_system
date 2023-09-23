@@ -47,7 +47,7 @@
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{$application->created_at}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{$application->title}}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{$application->shootingDate}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{$application->shootingDateStart}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{$application->letter}}" target="_blank"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Open</a>
