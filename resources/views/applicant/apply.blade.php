@@ -46,8 +46,8 @@
                             class="block text-sm font-medium text-gray-800 dark:text-white">Document</label>
                         <select name="document" id="document"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            <option value="1">National ID card</option>
-                            <option value="0">Passport</option>
+                            <option value="id">National ID card</option>
+                            <option value="passport">Passport</option>
                         </select>
                     </div>
 
