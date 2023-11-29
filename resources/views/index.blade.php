@@ -7,6 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{env('APP_NAME')}}</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
+    <style>
+        .sliding-text {
+            white-space: nowrap;
+            animation: slideText 10s linear infinite;
+            transform-origin: left;
+        }
+
+        @keyframes slideText {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+
 </head>
 
 <body class="bg-gray-100">
@@ -27,7 +45,7 @@
 
     <div class="container mx-auto text-center relative">
         <img src="landing_image.jpg" alt="Landing Image" class="w-full h-auto rounded-lg shadow-lg">
-        <h1 class="text-4xl font-bold absolute bottom-0 left-0 w-full text-white bg-black bg-opacity-50 p-4">
+        <h1 class="text-4xl font-bold absolute bottom-0 left-0 w-full text-white  bg-opacity-50 p-4 sliding-text">
             Welcome to {{env('APP_NAME')}} ( Video shooting and Photography Permit Request Portal )
         </h1>
     </div>

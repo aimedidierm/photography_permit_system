@@ -27,19 +27,27 @@ class ApplicationController extends Controller
     {
         $applications = Application::latest()->where('status', 'rejected')->get();
         $applications->load('user');
-        return view('register.rejected', ['data' => $applications]);
+        if (Auth::user()->role == 'register') {
+            return view('register.rejected', ['data' => $applications]);
+        } else {
+            return view('board.rejected', ['data' => $applications]);
+        }
     }
 
     public function pending()
     {
-        $applications = Application::latest()->where('status', 'pending')->get();
+        $applications = Application::latest()->where('status', 'payed')->get();
         $applications->load('user');
-        return view('register.pending', ['data' => $applications]);
+        if (Auth::user()->role == 'register') {
+            return view('register.pending', ['data' => $applications]);
+        } else {
+            return view('board.pending', ['data' => $applications]);
+        }
     }
 
     public function rejectView()
     {
-        return view('register.comment');
+        return view('board.comment');
     }
 
     public function reject(Request $request, Application $application)

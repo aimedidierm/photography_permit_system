@@ -26,6 +26,8 @@ class AuthController extends Controller
                     return redirect("/applicant");
                 } elseif ($user->role == 'register') {
                     return redirect("/register/applications");
+                } elseif ($user->role == 'board') {
+                    return redirect("/board/applications");
                 } else {
                     return back()->withErrors('Role not found');
                 }

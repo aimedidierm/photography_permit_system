@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<x-registernav />
+<x-boardnav />
 <div class="py-11 sm:ml-64">
     <div class="flex justify-between">
         <h2 class="text-2xl font-semibold p-4 mb-4">Add comment to reject application</h2>

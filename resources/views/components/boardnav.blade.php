@@ -40,12 +40,12 @@
                         </div>
                         <ul class="py-1" role="none">
                             <li>
-                                <a href="/register/applications"
+                                <a href="/board/applications"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">Dashboard</a>
                             </li>
                             <li>
-                                <a href="/register/settings"
+                                <a href="/board/settings"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">Settings</a>
                             </li>
@@ -68,25 +68,16 @@
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="/register/applications"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined">
-                        description
-                    </span>
-                    <span class="flex-1 ml-3 whitespace-nowrap">All Applications</span>
-                </a>
-            </li>
-            <li>
-                <a href="/register/pending"
+                <a href="/board/applications"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         upload_file
                     </span>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Manage Applications</span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Pending Applications</span>
                 </a>
             </li>
             <li>
-                <a href="/register/rejected"
+                <a href="/board/rejected"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         edit_document
@@ -95,34 +86,7 @@
                 </a>
             </li>
             <li>
-                <a href="/register/payments"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined">
-                        payments
-                    </span>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Payments</span>
-                </a>
-            </li>
-            {{-- <li>
-                <a href="/register/registers"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined">
-                        group
-                    </span>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Registers</span>
-                </a>
-            </li>
-            <li>
-                <a href="/register/applicants"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined">
-                        groups_2
-                    </span>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Applicants</span>
-                </a>
-            </li> --}}
-            <li>
-                <a href="/register/settings"
+                <a href="/board/settings"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         settings

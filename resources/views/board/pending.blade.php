@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<x-registernav />
+<x-boardnav />
 <div class="py-11 sm:ml-64">
     <div class="flex justify-between">
         <h2 class="text-2xl font-semibold p-4 mb-4">All pending applications</h2>
@@ -32,12 +32,16 @@
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Details
                         </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Action
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-600">
                     @if ($data->isEmpty())
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap" colspan="5">You didn't have any application</td>
+                        <td class="px-6 py-4 whitespace-nowrap" colspan="6">You didn't have any application</td>
                     </tr>
                     @else
                     @foreach ($data as $application)
@@ -52,6 +56,12 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="/register/application/{{$application->id}}"
                                 class="font-medium text-blue-700 dark:text-blue-700 hover:underline">More details</a>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a href="/board/application/approve/{{$application->id}}"
+                                class="font-medium text-blue-700 dark:text-blue-700 hover:underline">Approve</a>
+                            <a href="/board/application/reject/{{$application->id}}"
+                                class="font-medium text-red-700 dark:text-red-700 hover:underline">Reject</a>
                         </td>
                     </tr>
                     @endforeach

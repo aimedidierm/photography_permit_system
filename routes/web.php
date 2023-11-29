@@ -32,11 +32,8 @@ Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddlewa
     Route::get('/payments', [PaymentController::class, 'index']);
     Route::get('/applications', [ApplicationController::class, 'registerList']);
     Route::get('/application/{application}', [ApplicationController::class, 'create']);
-    Route::get('/application/approve/{application}', [ApplicationController::class, 'approve']);
-    Route::get('/application/reject/{application}', [ApplicationController::class, 'rejectView']);
-    Route::post('/application/reject/{application}', [ApplicationController::class, 'reject']);
-    Route::resource('/registers', RegisterController::class)->only('index', 'store', 'destroy');
-    Route::resource('/applicants', ApplicantController::class)->only('index', 'store', 'destroy');
+    // Route::resource('/registers', RegisterController::class)->only('index', 'store', 'destroy');
+    // Route::resource('/applicants', ApplicantController::class)->only('index', 'store', 'destroy');
     Route::get('/settings', [UserController::class, 'show']);
     Route::post('/settings', [UserController::class, 'detailsUpdate']);
     Route::get('/report', [ApplicationController::class, 'report']);
@@ -48,6 +45,17 @@ Route::group(["prefix" => "applicant", "middleware" => ["auth", "applicantMiddle
     Route::get('/application/{application}', [ApplicationController::class, 'show']);
     Route::get('/payments', [PaymentController::class, 'applicantList']);
     Route::post('/payments', [PaymentController::class, 'pay']);
+    Route::get('/settings', [UserController::class, 'show']);
+    Route::post('/settings', [UserController::class, 'detailsUpdate']);
+});
+
+Route::group(["prefix" => "board", "middleware" => ["auth", "boardMiddleware"], "as" => "board."], function () {
+    Route::get('/applications', [ApplicationController::class, 'pending']);
+    Route::get('/rejected', [ApplicationController::class, 'rejected']);
+    Route::get('/application/{application}', [ApplicationController::class, 'create']);
+    Route::get('/application/approve/{application}', [ApplicationController::class, 'approve']);
+    Route::get('/application/reject/{application}', [ApplicationController::class, 'rejectView']);
+    Route::post('/application/reject/{application}', [ApplicationController::class, 'reject']);
     Route::get('/settings', [UserController::class, 'show']);
     Route::post('/settings', [UserController::class, 'detailsUpdate']);
 });

@@ -4,12 +4,12 @@
 
 <x-applicantnav />
 <div class="py-11 sm:ml-64">
-    <h2 class="p-4 text-2xl font-semibold mb-4">Send application</h2>
+    <h2 class="p-4 text-2xl font-semibold mb-4">FILM SHOOTING AUTHORISATION REQUEST FORM</h2>
     @if($errors->any())<span
         class="self-center text-1xl font-semibold whitespace-nowrap dark:text-red-600">{{$errors->first()}}</span>@endif
     <div class="flex items-center justify-center px-4">
         <div class="bg-white dark:bg-gray-700 rounded-lg p-8 shadow-md w-full">
-            <h2 class="text-1xl font-semibold mb-4 dark:text-white">User Details</h2>
+            <h2 class="text-1xl font-semibold mb-4 dark:text-white">IDENTIFICATION</h2>
             <form action="/applicant/applications" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="flex space-x-4">
@@ -35,11 +35,16 @@
                     <div class="mb-4 w-1/3">
                         <label for="name"
                             class="block text-sm font-medium text-gray-800 dark:text-white">Nationality</label>
-                        <select name="rwandan" id="id"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            <option value="1">Rwandan</option>
-                            <option value="0">Not Rwandan</option>
-                        </select>
+                        <div class="mt-1">
+                            <label class="inline-flex items-center">
+                                <input type="radio" name="rwandan" value="1" class="form-radio h-5 w-5 text-indigo-600">
+                                <span class="ml-2 text-sm text-white">Rwandan</span>
+                            </label>
+                            <label class="inline-flex items-center ml-6">
+                                <input type="radio" name="rwandan" value="0" class="form-radio h-5 w-5 text-indigo-600">
+                                <span class="ml-2 text-sm text-white">Not Rwandan</span>
+                            </label>
+                        </div>
                     </div>
                     <div class="mb-4 w-1/3">
                         <label for="document"
@@ -55,7 +60,7 @@
                         <label for="documentNumber"
                             class="block text-sm font-medium text-gray-800 dark:text-white">Document
                             number(ID or Passport)</label>
-                        <input type="text" id="emdocumentNumberail" name="documentNumber" required
+                        <input type="text" id="emdocumentNumberail" name="documentNumber" required maxlength="16"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                 </div>
@@ -86,7 +91,7 @@
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                 </div>
-                <h2 class="text-1xl font-semibold mb-4 dark:text-white">Film Project Information</h2>
+                <h2 class="text-1xl font-semibold mb-4 dark:text-white">FILM PROJECT INFORMATION</h2>
                 <div class="flex space-x-4">
                     <div class="mb-4 w-1/2">
                         <label for="title" class="block text-sm font-medium text-gray-800 dark:text-white">Title</label>
@@ -137,7 +142,7 @@
                     </div>
                 </div>
 
-                <h2 class="text-1xl font-semibold mb-4 dark:text-white">Required files</h2>
+                <h2 class="text-1xl font-semibold mb-4 dark:text-white">REQUIRED DOCUMENTS</h2>
                 <div class="flex space-x-4">
                     <div class="mb-4 w-1/3">
                         <label for="letter" class="block text-sm font-medium text-gray-800 dark:text-white">Application
@@ -178,7 +183,6 @@
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                 </div>
-                <h2 class="text-1xl font-semibold mb-4 dark:text-white">Additional files</h2>
                 <div class="flex space-x-4">
                     <div class="mb-4 w-1/3">
                         <label for="itCertificate"

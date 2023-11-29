@@ -45,11 +45,7 @@ class UserController extends Controller
             $user->phone = $request->phone;
             $user->password = bcrypt($request->password);
             $user->update();
-            if ($user->role == 'applicant') {
-                return redirect('/applicant/settings');
-            } else {
-                return redirect('/register/settings');
-            }
+            return redirect()->back();
         } else {
             return back()->withErrors('Passwords not match');
         }
@@ -94,6 +90,8 @@ class UserController extends Controller
         $user = Auth::user();
         if ($user->role == 'applicant') {
             return view('applicant.settings', ['data' => $user]);
+        } elseif ($user->role == 'board') {
+            return view('board.settings', ['data' => $user]);
         } else {
             return view('register.settings', ['data' => $user]);
         }

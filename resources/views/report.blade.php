@@ -10,6 +10,7 @@
 
 <body class="bg-opacity-50">
     <div class="container mx-auto p-4">
+        <img src="{{'inteko_logo.jpg'}}" alt="" width="200" height="200">
         <h2 class="text-2xl font-semibold mb-4">List of all applications</h2>
 
         <table class="w-full table-auto border border-collapse">
@@ -19,21 +20,24 @@
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Title</th>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Shooting date</th>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Status</th>
+                    <th style="padding: 8px; border: 1px solid #0c0c0c;">Description</th>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Amount</th>
                 </tr>
             </thead>
             <tbody>
                 @if ($data->isEmpty())
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #0c0c0c;" colspan="5">No available data</td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;" colspan="6">No available data</td>
                 </tr>
                 @else
                 @foreach ($data as $application)
                 <tr>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->created_at}}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->title}}</td>
-                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->shootingDate}}</td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->shootingDateStart}} -
+                        {{$application->shootingDateEnd}}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->status}}</td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->description}}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->payment->amount}} Rwf</td>
                 </tr>
                 @endforeach
