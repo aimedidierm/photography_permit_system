@@ -11,7 +11,9 @@
 <body class="bg-opacity-50">
     <div class="container mx-auto p-4">
         <img src="{{'inteko_logo.jpg'}}" alt="" width="200" height="200">
-        <h2 class="text-2xl font-semibold mb-4">List of all applications</h2>
+        <center>
+            <h2 class="text-2xl font-semibold mb-4">List of all applications</h2>
+        </center>
 
         <table class="w-full table-auto border border-collapse">
             <thead>
@@ -45,6 +47,8 @@
             </tbody>
         </table>
         <h2 class="text-2xl font-semibold mb-4">Total income is {{$total}} Rwf</h2>
+        <h6 class="text-2xl font-semibold mb-4">Printed on: {{now()}}</h6>
+        <h6 class="text-2xl font-semibold mb-4">Printed by {{Auth::user()->name}}</h6>
     </div>
 </body>
 

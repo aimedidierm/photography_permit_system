@@ -99,6 +99,22 @@
                             RRA bill</a>
                     </div>
                 </div>
+                <div class="flex space-x-4">
+                    <div class="mb-4 w-1/3">
+                        <a href="{{$data->identification}}"
+                            class="block text-sm font-medium text-blue-600 dark:text-blue-600">Open
+                            identification</a>
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <a href="{{$data->CV}}" class="block text-sm font-medium text-blue-600 dark:text-blue-600">Open
+                            CV</a>
+                    </div>
+                    <div class="mb-4 w-1/3">
+                        <a href="{{$data->synopsis}}"
+                            class="block text-sm font-medium text-blue-600 dark:text-blue-600">Open
+                            synopsis</a>
+                    </div>
+                </div>
                 <h2 class="text-1xl font-semibold mb-4 dark:text-white">Additional files</h2>
                 <div class="flex space-x-4">
                     <div class="mb-4 w-1/3">
