@@ -54,7 +54,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">{{$application->status}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="/register/application/{{$application->id}}"
+                            <a href="/board/application/{{$application->id}}"
                                 class="font-medium text-blue-700 dark:text-blue-700 hover:underline">More details</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">

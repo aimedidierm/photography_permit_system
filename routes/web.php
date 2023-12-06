@@ -58,4 +58,5 @@ Route::group(["prefix" => "board", "middleware" => ["auth", "boardMiddleware"], 
     Route::post('/application/reject/{application}', [ApplicationController::class, 'reject']);
     Route::get('/settings', [UserController::class, 'show']);
     Route::post('/settings', [UserController::class, 'detailsUpdate']);
+    Route::get('/application/{application}', [ApplicationController::class, 'create']);
 });

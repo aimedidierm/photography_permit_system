@@ -119,7 +119,11 @@ class ApplicationController extends Controller
     {
         $application->load('user');
         if ($application != null) {
-            return view('register.details', ['data' => $application]);
+            if (Auth::user()->role == 'register') {
+                return view('register.details', ['data' => $application]);
+            } else {
+                return view('board.details', ['data' => $application]);
+            }
         } else {
             return back()->withErrors('Application not found!');
         }
