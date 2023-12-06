@@ -75,12 +75,12 @@
                     <div class="mb-4 w-1/3">
                         <label for="dateIssue" class="block text-sm font-medium text-gray-800 dark:text-white">Date
                             Issue</label>
-                        <input type="date" id="dateIssue" name="dateIssue" required
+                        <input type="date" id="dateIssue" name="dateIssue"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>
                     <div class="mb-4 w-1/3">
                         <label for="dateExpiry" class="block text-sm font-medium text-gray-800 dark:text-white">Date
-                            Expiry</label>
+                            of expiration</label>
                         <input type="date" id="dateExpiry" name="dateExpiry"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                     </div>

@@ -135,7 +135,7 @@ class ApplicationController extends Controller
             'document' => 'required|string',
             'documentNumber' => 'required|string',
             'placeIssue' => 'required|string',
-            'dateIssue' => 'required|date',
+            'dateIssue' => 'nullable|date',
             // 'dateExpiry' => 'sometimes|date',
             'profession' => 'required|string',
             'title' => 'required|string',

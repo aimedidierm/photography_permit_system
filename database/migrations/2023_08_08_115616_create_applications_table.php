@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('documentType', ['passport', 'id']);
             $table->string('documentNumber');
             $table->string('placeIssue');
-            $table->date('dateIssue');
+            $table->date('dateIssue')->nullable();
             $table->date('dateExpiry')->nullable();
             $table->string('profession');
             $table->string('title');
