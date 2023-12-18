@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Payment;
+use App\Rules\DateIssueBeforeExpiry;
+use App\Rules\ShootingDateStartBeforeEnd;
 use App\Services\Sms;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -139,13 +141,13 @@ class ApplicationController extends Controller
             'document' => 'required|string',
             'documentNumber' => 'required|string',
             'placeIssue' => 'required|string',
-            'dateIssue' => 'nullable|date',
-            // 'dateExpiry' => 'sometimes|date',
+            'dateIssue' => 'required|date',
+            'dateExpiry' => ['sometimes', 'date', new DateIssueBeforeExpiry],
             'profession' => 'required|string',
             'title' => 'required|string',
             'genre' => 'required|string',
             'shootingDateStart' => 'required|date',
-            'shootingDateEnd' => 'required|date',
+            'shootingDateEnd' => ['required', 'date', new ShootingDateStartBeforeEnd],
             'stayDuration' => 'sometimes|string',
             'location' => 'required|string',
             'description' => 'required|string',
@@ -326,12 +328,46 @@ class ApplicationController extends Controller
     {
         //
     }
-    public function report()
+    public function reportRejected()
+    {
+        $total = Payment::where('status', 'payed')->sum('amount');
+        $applications = Application::latest()->where('status', 'rejected')->get();
+        $applications->load('user', 'payment');
+        $pdf = Pdf::loadView('report', ['data' => $applications, 'total' => $total, 'title' => 'Rejected']);
+        return $pdf->download('report.pdf');
+    }
+
+    public function reportApproved()
+    {
+        $total = Payment::where('status', 'payed')->sum('amount');
+        $applications = Application::latest()->where('status', 'approved')->get();
+        $applications->load('user', 'payment');
+        $pdf = Pdf::loadView('report', ['data' => $applications, 'total' => $total, 'title' => 'Approved']);
+        return $pdf->download('report.pdf');
+    }
+
+    public function reportPending()
+    {
+        $total = Payment::where('status', 'payed')->sum('amount');
+        $applications = Application::latest()->where('status', 'payed')->get();
+        $applications->load('user', 'payment');
+        $pdf = Pdf::loadView('report', ['data' => $applications, 'total' => $total, 'title' => 'Pending']);
+        return $pdf->download('report.pdf');
+    }
+
+    public function applicationPayments()
     {
         $total = Payment::where('status', 'payed')->sum('amount');
         $applications = Application::latest()->get();
         $applications->load('user', 'payment');
-        $pdf = Pdf::loadView('report', ['data' => $applications, 'total' => $total]);
+        $pdf = Pdf::loadView('payments_report', ['data' => $applications, 'total' => $total]);
         return $pdf->download('report.pdf');
+    }
+
+    public function certificate($application)
+    {
+        $application = Application::find($application);
+        $pdf = Pdf::loadView('certificate', ['application' => $application]);
+        return $pdf->download('certificate.pdf');
     }
 }

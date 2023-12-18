@@ -32,7 +32,7 @@
                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-600">
                     @if ($data->isEmpty())
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap" colspan="5">There is no any rester</td>
+                        <td class="px-6 py-4 whitespace-nowrap" colspan="5">There is no any data</td>
                     </tr>
                     @else
                     @foreach ($data as $register)

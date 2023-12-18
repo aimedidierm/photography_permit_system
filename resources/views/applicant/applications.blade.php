@@ -33,6 +33,10 @@
                         </th>
                         <th scope="col"
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Certificate
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Action
                         </th>
                     </tr>
@@ -53,6 +57,15 @@
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Open</a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">{{$application->status}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @if ($application->status == 'approved')
+                            <a href="/applicant/certificate/{{$application->id}}"
+                                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                type="button">
+                                Download
+                            </a>
+                            @endif
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="/applicant/application/{{$application->id}}"
                                 class="font-medium text-blue-700 dark:text-blue-700 hover:underline">More details</a>

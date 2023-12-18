@@ -5,9 +5,15 @@
 <div class="py-11 sm:ml-64">
     <div class="flex justify-between">
         <h2 class="text-2xl font-semibold p-4 mb-4">All applications</h2>
-        <a href="/register/report"
-            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-4 mb-2 mt-10 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Generate
-            report</a>
+        <a href="/register/report/rejected"
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-4 mb-2 mt-10 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Rejected
+            application report</a>
+        <a href="/register/report/pending"
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-4 mb-2 mt-10 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Pending
+            application report</a>
+        <a href="/register/report/approved"
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2 mr-4 mb-2 mt-10 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Approved
+            application report</a>
     </div>
     <div class="px-4">
         <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-md w-full">
