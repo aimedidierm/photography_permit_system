@@ -36,10 +36,8 @@ Route::group(["prefix" => "register", "middleware" => ["auth", "registerMiddlewa
     // Route::resource('/applicants', ApplicantController::class)->only('index', 'store', 'destroy');
     Route::get('/settings', [UserController::class, 'show']);
     Route::post('/settings', [UserController::class, 'detailsUpdate']);
-    Route::get('/report/rejected', [ApplicationController::class, 'reportRejected']);
-    Route::get('/report/pending', [ApplicationController::class, 'reportPending']);
-    Route::get('/report/approved', [ApplicationController::class, 'reportApproved']);
     Route::get('/report/payments', [ApplicationController::class, 'applicationPayments']);
+    Route::post('/report', [ApplicationController::class, 'applicationReport']);
 });
 
 Route::group(["prefix" => "applicant", "middleware" => ["auth", "applicantMiddleware"], "as" => "applicant."], function () {
