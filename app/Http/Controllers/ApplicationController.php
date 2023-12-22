@@ -335,20 +335,26 @@ class ApplicationController extends Controller
             'status' => 'required|string|in:pending,rejected,approved',
             'year' => 'required|numeric'
         ]);
-        $total = Payment::where('status', 'payed')->sum('amount');
-        $applications = Application::latest()->where('status', $request->status)
+
+        $applications = Application::latest()
+            ->where('status', $request->status)
             ->whereYear('created_at', '=', $request->year)
             ->get();
+
         $applications->load('user', 'payment');
+
+        $total = $applications->pluck('payment.amount')->sum();
+
         $pdf = Pdf::loadView('report', ['data' => $applications, 'total' => $total, 'title' => $request->status]);
         return $pdf->download('report.pdf');
     }
 
+
     public function applicationPayments()
     {
-        $total = Payment::where('status', 'payed')->sum('amount');
         $applications = Application::latest()->whereNot('status', 'pending')->get();
         $applications->load('user', 'payment');
+        $total = $applications->pluck('payment.amount')->sum();
         $pdf = Pdf::loadView('payments_report', ['data' => $applications, 'total' => $total]);
         return $pdf->download('report.pdf');
     }
