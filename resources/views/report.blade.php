@@ -17,11 +17,12 @@
                         <img src="{{ 'inteko_logo.jpg' }}" alt="" width="200" height="200">
                     </td>
                     <td style="width: 10%;">
-                       
+
                     </td>
                     <td style="width: 65%;">
                         <h2>{{ env('APP_NAME') }}</h2>
                         <h2>B.P 450 Kigali, Rwanda</h2>
+                        <hr style="border: 1px solid #0c0c0c; margin-top: 10px;">
                     </td>
                 </tr>
             </table>
@@ -37,38 +38,47 @@
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Submission date</th>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Title</th>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Shooting date</th>
-                    <th style="padding: 8px; border: 1px solid #0c0c0c;">Status</th>
                     <th style="padding: 8px; border: 1px solid #0c0c0c;">Amount</th>
                 </tr>
             </thead>
             <tbody>
                 @if ($data->isEmpty())
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #0c0c0c;" colspan="6">No available data</td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;" colspan="5">No available data</td>
                 </tr>
                 @else
                 @foreach ($data as $application)
                 <tr>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->user->name}}</td>
-                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->created_at}}</td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $application->created_at->format('Y-m-d') }}
+                    </td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->title}}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->shootingDateStart}} -
                         {{$application->shootingDateEnd}}</td>
-                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->status}}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{$application->payment->amount}} Rwf</td>
                 </tr>
                 @endforeach
                 @endif
             </tbody>
         </table>
-        <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br>
+        <br>
         <table style="width: 100%;">
             <tr>
                 <td style="width: 60%;">
-                    
+
                 </td>
                 <td style="width: 40%;">
                     <h2 class="text-2xl font-semibold mb-4">Total income is {{$total}} Rwf</h2>
+                </td>
+            </tr>
+        </table>
+        <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br>
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 60%;">
+
+                </td>
+                <td style="width: 40%;">
                     <h4 class="text-2xl font-semibold mb-4">Printed on: {{now()}}</h4>
                     <h4 class="text-2xl font-semibold mb-4">Printed by {{Auth::user()->name}}</h4>
                 </td>
